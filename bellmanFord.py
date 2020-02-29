@@ -100,6 +100,7 @@ def processCSV(inputFile):
             if(i[0] != i[1]):
                 edgeNamesWeights[str(i[1]+i[0])] = edgeNamesWeights[i]
 ############################################################ # CHRIS (with EBONI pair programming)  
+############################################################ # CHRIS (with EBONI pair programming)  
 def checkForNewPath():
     # global nodeGraphs,newValues
     for X in nodeNames:
@@ -136,7 +137,7 @@ def dv_algorithm():
         newValues.clear()
         # do the minimization, and add values to newValues if needed
         checkForNewPath()
-
+printResult()
 ############################################################ #OWEN
 # Take in csv file fro mcommand line
 if(len(sys.argv) >= 2):
@@ -147,7 +148,7 @@ if(len(sys.argv) >= 2):
     # initialize step # CHRIS, EBONI
     dv_algorithm()
 else:
-    pass # need to let them know that we need a file
+    print("This program requires a csv file to be specified at run time")
 
     
 ############################################################
