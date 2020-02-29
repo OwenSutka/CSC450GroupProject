@@ -1,1 +1,15 @@
 print("Hello World")
+
+# useful stuff may need later
+        # get all the values that need to update
+        for nodeA in nodeNames:
+            for nodeB in nodeNames:
+                # if not looking at the same node
+                if(nodeA != nodeB):
+                    for nodeC in nodeNames:
+                        # if different values
+                        if(nodeGraphs[nodeA][nodeB+nodeC] != nodeGraphs[nodeB][nodeB+nodeC]):
+                            update = True
+                            newValues[nodeB+nodeC] = nodeGraphs[nodeB][nodeB+nodeC]
+
+
