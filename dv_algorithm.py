@@ -199,9 +199,8 @@ def dv_algorithm():
     printResult()
 ##################################################### MAIN PROGRAM ######################################################
 # Take in csv file from command line
-if(len(sys.argv) >= 1):
-    #inputFile = str(sys.argv[1])
-    inputFile = "topology.csv"                  #### FIX
+if(len(sys.argv) >= 2):
+    inputFile = str(sys.argv[1])
     # Normal Function
     # pulls in CSV data
     processCSV(inputFile)
