@@ -119,8 +119,33 @@ def processCSV(inputFile):
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#OWEN
 # This function prints the distance vectors for the nodes in the algorithm 
 def printResult():
-    for node in nodeNames:
-        print("Distance vector for node: {}".format(node))
+    for node in nodeGraphs:
+        # Created the initial prijtout and then pulled a pathList dictionary out of the big boi dictionary
+        printLine = "Distance vector for node {}:".format(node)
+        pathList = nodeGraphs.get(str(node))
+
+        # This here is because the input data from the nodeGraphs was formatted in a way that it was out of order. This will ensure it is always in order
+        # Dictionary was completely unsorted no matter what I did so we are using a list instead (yay i want to die)
+        pathListNames = []
+        newCostsList = []
+        # pulling all the path names...
+        for path in pathList:
+            pathListNames.append(path)
+        # Sorted them...
+        pathListNames.sort()
+
+        # now going through and creating a new list for us to use that is sorted...
+        for i in range(0, len(pathListNames)):
+            newCostsList.append(pathListNames[i])
+            newCostsList.append(pathList.get(pathListNames[i]))
+
+        # Now is the actual printing of the important stuffs
+        for i in range(0, int(len(newCostsList)/2)):
+            pathName = newCostsList[i*2]           
+            if (pathName[0] == node):
+                printLine = printLine + " " + str(newCostsList[i*2+1])
+        print(printLine)
+	
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#CHRIS
 # (with EBONI pair programming)  
 # This function checks to see if a node can find a lower-cost path to other nodes based on the current values sent to
@@ -174,8 +199,9 @@ def dv_algorithm():
     printResult()
 ##################################################### MAIN PROGRAM ######################################################
 # Take in csv file from command line
-if(len(sys.argv) >= 2):
-    inputFile = str(sys.argv[1])
+if(len(sys.argv) >= 1):
+    #inputFile = str(sys.argv[1])
+    inputFile = "topology.csv"                  #### FIX
     # Normal Function
     # pulls in CSV data
     processCSV(inputFile)
